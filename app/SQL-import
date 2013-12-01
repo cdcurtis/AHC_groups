@@ -1,0 +1,245 @@
+-- phpMyAdmin SQL Dump
+-- version 3.5.1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Dec 01, 2013 at 03:26 AM
+-- Server version: 5.5.25
+-- PHP Version: 5.4.4
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `ahc_groups_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `groups`
+--
+
+CREATE TABLE `groups` (
+  `id` int(11) NOT NULL,
+  `capacity` tinyint(4) NOT NULL,
+  `leader_id` int(11) NOT NULL,
+  `name` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `group_not_with`
+--
+
+CREATE TABLE `group_not_with` (
+  `student_source_id` int(11) NOT NULL,
+  `student_preference_id` int(11) NOT NULL,
+  PRIMARY KEY (`student_source_id`,`student_preference_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `group_with`
+--
+
+CREATE TABLE `group_with` (
+  `student_source_id` varchar(20) NOT NULL,
+  `student_preference_id` varchar(20) NOT NULL,
+  PRIMARY KEY (`student_source_id`,`student_preference_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `group_with`
+--
+
+INSERT INTO `group_with` (`student_source_id`, `student_preference_id`) VALUES
+('alex2017', 'caleb2017'),
+('alfonso2017', 'anthony2017'),
+('benjamin2017', 'daniel2017'),
+('benjamin2017', 'japheth2017'),
+('daniel2017', 'japheth2017'),
+('matt2017', 'japheth2017');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `leaders`
+--
+
+CREATE TABLE `leaders` (
+  `id` int(11) NOT NULL,
+  `last` varchar(30) NOT NULL,
+  `first` varchar(30) NOT NULL,
+  `gender` varchar(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `students`
+--
+
+CREATE TABLE `students` (
+  `id` varchar(11) NOT NULL,
+  `last` varchar(30) NOT NULL,
+  `first` varchar(30) NOT NULL,
+  `grade` tinyint(4) NOT NULL,
+  `gender` varchar(1) NOT NULL,
+  `group_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`id`, `last`, `first`, `grade`, `gender`, `group_id`) VALUES
+('abigail2014', 'Wong', 'Abigail', 12, 'F', 0),
+('adhil2017', 'Vinod', 'Bobby', 9, 'M', 0),
+('alex2017', 'DeCosta', 'Alex', 9, 'M', 0),
+('alfonso2017', 'Cefre', 'Alfonso', 9, 'M', 0),
+('amanda2015', 'Rentel', 'Amanda', 11, 'F', 0),
+('amir2016', 'Lavasani', 'Amir', 10, 'M', 0),
+('andrea2017', 'Tam', 'Andrea', 9, 'F', 0),
+('andy2014', 'Oh', 'Andy', 12, 'M', 0),
+('angelica201', 'Padilla', 'Angelica', 11, 'F', 0),
+('anne2016', 'Yamamoto', 'Anne', 10, 'F', 0),
+('anne2017', 'Boyd', 'Anne', 9, 'F', 0),
+('anthony2017', 'Almeida', 'Anthony', 9, 'M', 0),
+('anthonyc201', 'Cheuk', 'Anthony', 11, 'M', 0),
+('anthonych20', 'Chang', 'Anthony', 11, 'M', 0),
+('anthonyl201', 'Lin', 'Anthony', 11, 'M', 0),
+('antonio2016', 'Gonzalez', 'Antonio', 10, 'M', 0),
+('aric2016', 'Maalona', 'Aric', 10, 'M', 0),
+('armand2015', 'Nasseri', 'Armand', 11, 'M', 0),
+('ashley2015', 'Hekkert', 'Ashley', 11, 'F', 0),
+('audrey2016', 'Tsui', 'Audrey', 10, 'F', 0),
+('benjamin201', 'Reed', 'Benjamin', 9, 'M', 0),
+('bethany2016', 'Reed', 'Bethany', 10, 'F', 0),
+('brianna2014', 'Gutierrez', 'Brianna', 12, 'F', 0),
+('caitlin2015', 'Chiu', 'Caitlin', 11, 'F', 0),
+('caitlin2017', 'Odulio', 'Caitlin', 9, 'F', 0),
+('caleb2017', 'Jacobson', 'Caleb', 9, 'M', 0),
+('cassandra20', 'Odulio', 'Cassandra', 11, 'F', 0),
+('charlene201', 'deJoya', 'Charlene', 11, 'F', 0),
+('Chloe2016', 'Li', 'Chloe', 10, 'F', 0),
+('chris2014', 'Brady', 'Chris', 12, 'M', 0),
+('chris2015', 'Ross', 'Chris', 11, 'M', 0),
+('christian20', 'Cairo', 'Christian', 11, 'M', 0),
+('connor2015', 'Roark', 'Connor', 11, 'M', 0),
+('cory2014', 'Kwock', 'Cory', 12, 'M', 0),
+('cyrene2015', 'Sheley', 'Cyrene', 11, 'F', 0),
+('dahlia2015', 'Rodriguez', 'Dahlia', 11, 'F', 0),
+('danah2016', 'Balantakbo', 'Danah Marie', 10, 'F', 0),
+('daniel2014', 'Messier', 'Daniel', 12, 'M', 0),
+('daniel2015', 'Husak', 'Daniel', 11, 'M', 0),
+('daniel2016', 'Price', 'Daniel', 10, 'M', 0),
+('daniel2017', 'Jefferson', 'Daniel', 9, 'M', 0),
+('david2014', 'Durkin', 'David', 12, 'M', 0),
+('denise2016', 'Trinh', 'Denise', 10, 'F', 0),
+('drew2014', 'Bernard', 'Drew', 12, 'F', 0),
+('dylan2015', 'Lee', 'Dylan', 11, 'M', 0),
+('elias2014', 'Paz', 'Elias', 12, 'M', 0),
+('emily2016', 'Latu', 'Emily', 10, 'F', 0),
+('ethan2014', 'Stump', 'Ethan', 12, 'M', 0),
+('euric2016', 'Mendoza', 'Euric', 10, 'M', 0),
+('evan2014', 'Yip', 'Evan', 12, 'M', 0),
+('grace2015', 'Eidman', 'Grace', 11, 'F', 0),
+('gregory2014', 'Lim', 'Gregory', 12, 'M', 0),
+('holly2014', 'Riordan', 'Holly', 12, 'F', 0),
+('hugo2016', 'Myron', 'Hugo', 10, 'M', 0),
+('id', 'last', 'first', 0, 'g', 0),
+('jack2016', 'Riordan', 'Jack', 10, 'M', 0),
+('jade2014', 'Tu', 'Jade', 12, 'F', 0),
+('jade2017', 'Lacanienta', 'Jade', 9, 'F', 0),
+('james2014', 'Boyd', 'James', 12, 'M', 0),
+('james2016', 'Harris', 'James', 10, 'M', 0),
+('janelle2015', 'Moore', 'Janelle', 11, 'F', 0),
+('japheth2017', 'Pineda', 'Japheth', 9, 'M', 0),
+('jared2014', 'Morin', 'Jared Daniel', 12, 'M', 0),
+('jeffrey2016', 'Li', 'Jeffrey', 11, 'M', 0),
+('jeremy2015', 'Latief', 'Jeremy', 11, 'M', 0),
+('jesse2015', 'Huang', 'Jesse', 11, 'M', 0),
+('jessica2014', 'Lee', 'Jessica', 12, 'F', 0),
+('jessica2015', 'Chedyak', 'Jessica', 11, 'F', 0),
+('jessica2017', 'Lingua', 'Jessica', 9, 'F', 0),
+('jin2015', 'Liang', 'Jin', 11, 'M', 0),
+('joey2016', 'Gross', 'Joey', 10, 'M', 0),
+('johanna2016', 'Schulz', 'Johanna', 10, 'F', 0),
+('jonathan201', 'Wang', 'Jonathan', 12, 'M', 0),
+('joseph2014', 'Gomez', 'Joseph', 12, 'M', 0),
+('joshua2014', 'Cayetano', 'Joshua', 12, 'M', 0),
+('joshuab2015', 'Behrens', 'Joshua', 11, 'M', 0),
+('julia2015', 'Rodriguez', 'Julia', 11, 'F', 0),
+('julianna201', 'Dyer', 'Julianna', 11, 'F', 0),
+('kaile2017', 'London', 'Kaile', 9, 'F', 0),
+('kaitlin2017', 'Quan', 'Kaitlin', 9, 'F', 0),
+('kangbo2015', 'Lu', 'Caxias', 11, 'M', 0),
+('karen2014', 'Huang', 'Karen', 12, 'F', 0),
+('kariem2016', 'Herrarte', 'Kariem', 10, 'M', 0),
+('karlo2016', 'Santos', 'Karlo', 10, 'M', 0),
+('katrina2015', 'Johnson', 'Katrina', 11, 'F', 0),
+('kearra2017', 'Barretto', 'Kearra', 9, 'F', 0),
+('kenneth2014', 'Jong', 'Kenneth', 12, 'M', 0),
+('kevin2014', 'Liang', 'Kevin', 12, 'M', 0),
+('lada2017', 'Dorokhova', 'Lada', 9, 'F', 0),
+('lia2017', 'Robinson', 'Lia', 9, 'F', 0),
+('liam2015', 'Nealon', 'Liam', 11, 'M', 0),
+('lillian2016', 'Ogden', 'Lillian', 10, 'F', 0),
+('liza2014', 'Bower', 'Liza', 12, 'F', 0),
+('loren2016', 'Turincio', 'Loren', 10, 'F', 0),
+('lucas2015', 'Nunez', 'Lucas', 11, 'M', 0),
+('lucy2016', 'Shi', 'Lucy', 10, 'F', 0),
+('lydia2015', 'Arbic', 'Lydia', 11, 'F', 0),
+('mark2015', 'Lee', 'Mark', 11, 'M', 0),
+('mark2016', 'LaCroix', 'Mark', 10, 'M', 0),
+('mary2014', 'Martinez', 'Mary', 12, 'F', 0),
+('matt2014', 'Kolesnikov', 'Matthew', 12, 'M', 0),
+('matt2017', 'Ross', 'Matt', 9, 'M', 0),
+('matthew2014', 'Tam', 'Matthew', 12, 'M', 0),
+('matthew2017', 'Telleria', 'Matthew', 9, 'M', 0),
+('matthewm201', 'Martinez', 'Matthew', 10, 'M', 0),
+('meganq2014', 'Quan', 'Megan', 12, 'F', 0),
+('mia2015', 'Laurea', 'Mia', 11, 'F', 0),
+('michael2014', 'Bautista', 'Gabe', 12, 'M', 0),
+('michellel20', 'Lin', 'Michelle', 10, 'F', 0),
+('mirabella20', 'Mercado', 'Mirabella', 11, 'F', 0),
+('moises2014', 'Telleria', 'Moises', 12, 'M', 0),
+('molly2015', 'Zhao', 'Molly', 11, 'F', 0),
+('natalie2014', 'Salazar', 'Natalie', 12, 'F', 0),
+('natalie2015', 'Buitrago', 'Natalie', 11, 'F', 0),
+('nena2015', 'Darwin', 'Nena', 11, 'F', 0),
+('nihcus2014', 'Stanberry', 'Nihcus', 12, 'M', 0),
+('noah2015', 'Geertsema', 'Noah', 11, 'M', 0),
+('oliver2016', 'Pung', 'Oliver', 10, 'M', 0),
+('prakash2016', 'Nair', 'Prakash', 10, 'M', 0),
+('rebecca2016', 'Swanson', 'Rebecca', 10, 'F', 0),
+('rebeccao201', 'Overton', 'Rebecca', 10, 'F', 0),
+('regina2016', 'Grayson', 'Regina', 10, 'F', 0),
+('rex2014', 'Xu', 'Rex', 12, 'M', 0),
+('rosemary201', 'Ye', 'Rosemary', 12, 'F', 0),
+('roy2014', 'Vu', 'Roy', 12, 'M', 0),
+('ruby2014', 'Calip', 'Ruby', 12, 'F', 0),
+('sabrina2015', 'Bermudez', 'Sabrina', 11, 'F', 0),
+('sabrinaa201', 'Alicante', 'Sabrina', 11, 'F', 0),
+('sahil2016', 'Vinod', 'Sahil', 10, 'M', 0),
+('sara2014', 'Cory', 'Sara', 12, 'F', 0),
+('sara2015', 'Nuila-Chae', 'Sara', 11, 'F', 0),
+('sarah2014', 'Sebers', 'Sarah', 12, 'F', 0),
+('sarah2015', 'Marasigan', 'Sarah', 11, 'F', 0),
+('shelby2017', 'Willis', 'Shelby', 9, 'F', 0),
+('sidney2014', 'Wang', 'Sidney', 12, 'M', 0),
+('soli2016', 'Cayetano', 'Soli', 10, 'F', 0),
+('stanton2014', 'Sheley', 'Stanton', 12, 'M', 0),
+('stella2017', 'Gutierrez', 'Stella', 9, 'F', 0),
+('vanessa2014', 'Wu', 'Vanessa', 12, 'F', 0),
+('vincent2014', 'Ko', 'Vincent', 12, 'M', 0),
+('warren2015', 'Ko', 'Warren', 11, 'M', 0),
+('xinyi2017', 'Tong', 'Zoey', 9, 'F', 0),
+('yi2013', 'Gao', 'Paul', 11, 'M', 0),
+('ysabel2014', 'Cubos', 'Ysabel', 12, 'F', 0);
