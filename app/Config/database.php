@@ -71,71 +71,96 @@
  * database.  Uses database default.
  *
  */
+// 
+// class DATABASE_CONFIG {
+// 	
+// 	#localhost
+// 	var $local = array(
+// 		'driver' => 'mysql',
+// 		'persistent' => false,
+// 		'host' => 'localhost',
+//         'port' => '/Applications/MAMP/tmp/mysql/mysql.sock',
+// 		'login' => 'root',
+// 		'password' => 'root',
+// 		'database' => 'ahc_groups_db',
+// 		'prefix' => '',
+// 		);
+// 
+// 	#dev server
+// 	var $dev = array(
+// 		'driver' => 'mysql',
+// 		'persistent' => false,
+// 		'host' => 'internal-db.s97954.gridserver.com',
+// 		'login' => 'db97954_site',
+// 		'password' => 'qIu9CX.[@x_W',
+// 		'database' => 'db97954_ahc_groups_db',
+// 		'prefix' => '',
+// 		);
+// 
+// 	#live server
+// 	var $live = array(
+// 		'driver' => 'mysql',
+// 		'persistent' => false,
+// 		'host' => 'internal-db.s97954.gridserver.com',
+// 		'login' => 'db97954_site',
+// 		'password' => 'qIu9CX.[@x_W',
+// 		'database' => 'db97954_ahc_groups_db',
+// 		'prefix' => '',
+// 		);
+// 
+// 	#switch between configs
+// 	var $default = array();
+// 	var $test = array();
+// 	function __construct() {
+// 
+// 		#wildcard the subdomains
+// 		$host_r = explode('.', $_SERVER['SERVER_NAME']);
+// 		if(count($host_r)>2) while(count($host_r)>2)array_shift($host_r);
+// 		$mainhost = implode('.', $host_r);
+// 
+// 		#switch between servers
+// 		switch(strtolower($mainhost)) {
+// 			case 'localhost':
+// 				$this->default = $this->local;
+// 				break;
+// 			case 'almaheights.org/dev':
+// 				$this->default = $this->dev;
+// 				break;
+// 			case 'almaheights.org':
+// 				$this->default = $this->live;
+// 				break;
+// 			default:
+// 				$this->default = $this->local;
+// 		}
+// 	}
+// 
+// 	#php 4 compatibility
+// 	function DATABASE_CONFIG() {
+// 		$this->__construct();
+// 	}
+// }
+
+// ahc_groups_db
+
 
 class DATABASE_CONFIG {
-	
-	#localhost
-	var $local = array(
-		'driver' => 'mysql',
-		'persistent' => false,
+
+	public $default = array(
+		'datasource' => 'Database/Mysql',
+		'persistent' => true,
 		'host' => 'localhost',
-        'port' => '/Applications/MAMP/tmp/mysql/mysql.sock',
+		'unix_socket' => '/Applications/MAMP/tmp/mysql/mysql.sock',
+// 	    'port' => '/Applications/MAMP/tmp/mysql/mysql.sock',
 		'login' => 'root',
 		'password' => 'root',
 		'database' => 'ahc_groups_db',
 		'prefix' => '',
-		);
+		//'encoding' => 'utf8',
+	);
+		
+		
 
-	#dev server
-	var $dev = array(
-		'driver' => 'mysql',
-		'persistent' => false,
-		'host' => 'internal-db.s97954.gridserver.com',
-		'login' => 'db97954_site',
-		'password' => 'qIu9CX.[@x_W',
-		'database' => 'db97954_ahc_groups_db',
-		'prefix' => '',
-		);
-
-	#live server
-	var $live = array(
-		'driver' => 'mysql',
-		'persistent' => false,
-		'host' => 'internal-db.s97954.gridserver.com',
-		'login' => 'db97954_site',
-		'password' => 'qIu9CX.[@x_W',
-		'database' => 'db97954_ahc_groups_db',
-		'prefix' => '',
-		);
-
-	#switch between configs
-	var $default = array();
-	var $test = array();
-	function __construct() {
-
-		#wildcard the subdomains
-		$host_r = explode('.', $_SERVER['SERVER_NAME']);
-		if(count($host_r)>2) while(count($host_r)>2)array_shift($host_r);
-		$mainhost = implode('.', $host_r);
-
-		#switch between servers
-		switch(strtolower($mainhost)) {
-			case 'localhost':
-				$this->default = $this->local;
-				break;
-			case 'almaheights.org/dev':
-				$this->default = $this->dev;
-				break;
-			case 'almaheights.org':
-				$this->default = $this->live;
-				break;
-			default:
-				$this->default = $this->local;
-		}
-	}
-
-	#php 4 compatibility
-	function DATABASE_CONFIG() {
-		$this->__construct();
-	}
+	
 }
+
+?>
